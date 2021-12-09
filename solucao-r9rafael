@@ -1,0 +1,33 @@
+# desafio Magrathea: https://pastecode.io/s/b66tmort
+
+vaga_cifrada = [
+    '?lj\x1dp^iÞofl', 'Mi^kl\x1dab\x1dp^÷ab\x1dk^`flk^i', 'eq', 'S^ib\x1d^ifjbkq^äàl', 'qm',
+    'S^ib\x1dqo^kpmloqb', 'p7', 'Pbdrol\x1dab\x1dsfa^', ',,',
+    'Qo^_^ie^o\x1d`lj\x1dmbppl^p\x1dq^ibkqlp^p', '`^', 'EloÞofl\x1dcibuêsbi', 'ob',
+    'Fksbpqfjbkql\x1dm^o^\x1dl\x1deljb\x1dlccf`b', 'bo', '@riqro^\x1dab\x1dcbba_^`h', 'p+',
+    'Qbjml\x1dm^o^\x1d^rqlabpbkslisfjbkql', 'j^', 'do', '^q', 'Ofqjl\x1dprpqbkqÞsbi', 'eb', '^i',
+    '^_', 'Fksbpqfjbkql\x1dbj\x1d`roplp', 'p+', '`l', 'M^qol`êkfl\x1dm^o^\x1dbsbkqlp', 'j,', 'l,', 
+    'mb', 'pp', 'l^', '*a', 'bp', 'bk', 'sl', 'is', 'ba', 'lo', '^*', 'ab', '*p', 'lc', 'qt', '^o',
+    'b*', 'mv', 'qe', 'lk', '*i', 'fa', 'bo', '*q', 'b`', 'kf', '`^'
+]
+
+CHAVE = 0 # Descubra a chave ;) (não é 0)  //  desafio era encontrar o valor da chave
+
+for CHAVE in range(len(vaga_cifrada)): # usei um loop for para iterar o valor da chave usando o tamanho da lista 'vaga_cifrada'
+    def decifrar(texto):
+        resultado = []
+        for char in texto:
+            resultado.append(chr(ord(char) + int(CHAVE / 14)))
+        return ''.join(resultado)
+
+    vaga = [decifrar(texto) for texto in vaga_cifrada]
+
+    o_que_oferecemos = [valor for valor in vaga if len(valor) != 2]
+    url = ''.join([valor for valor in vaga if valor not in o_que_oferecemos])
+
+    if url[0:5]=='https': # usei um loop if para quando identificar o valor da CHAVE que decifraria o código, interromper o loop for e imprimir os benefícios e a url
+        break
+
+print(o_que_oferecemos)
+print(url)
+print(CHAVE) # o valor correto da chave
